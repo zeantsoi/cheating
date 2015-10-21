@@ -1,170 +1,181 @@
 .jquery-range {
-	
-	// variables
-		$borderColor: #ddd;
-		
-		$buttonFontSize: 10px;
-		$buttonMargin: 5px;
-		$buttonSize: 15px;
-		
-		$flagColor: #35393b;
-		$flagFontSize: 12px;
-		$flagPadding: 6px;
-		$flagRadius: 3px;
-		$flagWidth: 35px;
-		
-		$fontFamily: Helvetica, Arial, sans-serif;
-		
-		$thumbColor: #2dacd7;
-		$thumbColorHover: #1b93bd;
-		$thumbFontSize: 10px;
-		$thumbSize: 25px;
-		$thumbTextColor: #fff;
+  
+  // variables
+    $borderColor: #ddd;
+    
+    $buttonFontSize: 10px;
+    $buttonMargin: 5px;
+    $buttonSize: 15px;
+    
+    $flagColor: #35393b;
+    $flagFontSize: 12px;
+    $flagPadding: 6px;
+    $flagRadius: 3px;
+    $flagWidth: 35px;
+    
+    $fontFamily: Helvetica, Arial, sans-serif;
+    
+    $thumbColor: #2dacd7;
+    $thumbColorHover: #1b93bd;
+    $thumbFontSize: 10px;
+    $thumbSize: 25px;
+    $thumbTextColor: #fff;
 
-		$transitionTime: 0.2s;
-		
-		$width: 195px;
+    $transitionTime: 0.2s;
+    
+    $width: 195px;
 
-	//handle vendor prefixes
-		@mixin transform($value) {
-			-webkit-transform: $value;
-			-moz-transform: $value;
-			-ms-transform: $value;
-			transform: $value;
-		}
+  //handle vendor prefixes
+    @mixin transform($value) {
+      -webkit-transform: $value;
+      -moz-transform: $value;
+      -ms-transform: $value;
+      transform: $value;
+    }
 
-		@mixin transition($value) {
-			-webkit-transition: $value;
-			-moz-transition: $value;
-			-ms-transition: $value;
-			transition: $value;
-		}
+    @mixin transition($value) {
+      -webkit-transition: $value;
+      -moz-transition: $value;
+      -ms-transition: $value;
+      transition: $value;
+    }
 
-	font-family: $fontFamily;
-	height: $thumbSize;
-	position: relative;
-	text-align: center;
-	width: $width;
+    @mixin boxSizing($value) {
+      -webkit-box-sizing: $value;
+      -moz-box-sizing: $value;
+      box-sizing: $value;
+    }
 
-	input {
-		$margin: ($buttonSize + $buttonMargin);
-		
-		background: none;
-		border-top: 1px solid $borderColor;
-		margin: floor($thumbSize / 2) $margin 0;
-		position: relative;
-		width: calc(100% - #{$margin * 2});
-		-webkit-appearance: none;
-	}
+  font-family: $fontFamily;
+  height: $thumbSize;
+  position: relative;
+  text-align: center;
+  width: $width;
 
-	input:focus, input:active {
-		outline: none;
-	}
+  input {
+    $margin: ($buttonSize + $buttonMargin);
+    
+    background: none;
+    border-top: 1px solid $borderColor;
+    @include boxSizing(content-box);
+    height: 1px;
+    margin: floor($thumbSize / 2) $margin 0;
+    width: calc(100% - #{$margin * 2});
+    -webkit-appearance: none;
+  }
 
-	input::-moz-range-track {
-		border: 0;
-	}
+  input:focus, input:active {
+    outline: none;
+  }
 
-	.jquery-range-thumb {
-		height: $thumbSize;
-		pointer-events: none;
-		position: absolute;
-		top: 0;
-		width: $thumbSize;
-	}
+  input[type=range]::-moz-focus-outer {
+    border: none;
+  }
 
-		.jquery-range-flag {
-			background: $flagColor;
-			border-radius: 	$flagRadius;
-			color: $thumbTextColor;
-			font-size: $flagFontSize;
-			padding: $flagPadding 0;
-			position: absolute;
-			width: $flagWidth;
-			left: 50%;
-			@include transform(translate(-50%, -130%));
-			@include transition(opacity $transitionTime);
-			opacity: 0;
-		}
+  input::-moz-range-track {
+    height: 0;
+  }
 
-		&:hover .jquery-range-flag {
-			opacity: 1;
-		}
+  .jquery-range-thumb {
+    height: $thumbSize;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: $thumbSize;
+  }
 
-		.jquery-range-flag:after {
-			$borderWidth: 7px;
+    .jquery-range-flag {
+      background: $flagColor;
+      border-radius: $flagRadius;
+      color: $thumbTextColor;
+      font-size: $flagFontSize;
+      left: 50%;
+      opacity: 0;
+      padding: $flagPadding 0;
+      position: absolute;
+      @include transform(translate(-50%, -130%));
+      @include transition(opacity $transitionTime);
+      width: $flagWidth;
+    }
 
-			border: $borderWidth solid transparent;
-			border-top-color: $flagColor;
-			height: 0px;
-			content: '';
-			left: calc(50% - #{$borderWidth});
-			position: absolute;
-			bottom: -(($borderWidth - 1px) * 2);
-			width: 0px;
-		}
+    &:hover .jquery-range-flag {
+      opacity: 1;
+    }
 
-		.jquery-range-label {
-			color: $thumbTextColor;
-			font-size: $thumbFontSize;
-			height: 100%;
-			line-height: $thumbSize;
-			@include transition(opacity $transitionTime);
-		}
+    .jquery-range-flag:after {
+      $borderWidth: 7px;
 
-		&:hover .jquery-range-label {
-			opacity: 0;
-		}
+      border: $borderWidth solid transparent;
+      border-top-color: $flagColor;
+      bottom: -(($borderWidth - 1px) * 2);
+      content: '';
+      height: 0px;
+      left: calc(50% - #{$borderWidth});
+      position: absolute;
+      width: 0px;
+    }
 
-	@mixin thumb {
-		background: $thumbColor;
-		border-radius: $thumbSize / 2;
-		cursor: pointer;
-		height: $thumbSize;
-		margin-top: - ceil($thumbSize / 2);
-		width: $thumbSize;
-		@include transition($transitionTime);
-		
-		&:hover {
-			background: $thumbColorHover;
-		}
-	}
+    .jquery-range-label {
+      color: $thumbTextColor;
+      font-size: $thumbFontSize;
+      height: 100%;
+      line-height: $thumbSize;
+      @include transition(opacity $transitionTime);
+    }
 
-	input::-webkit-slider-thumb {
-		-webkit-appearance:none;
-		@include thumb;
-	}
+    &:hover .jquery-range-label {
+      opacity: 0;
+    }
 
-	input::-moz-range-thumb {
-		-moz-appearance:none;
-		@include thumb;
-	}
-	
-	.jquery-range-plus, .jquery-range-minus {
-		background: none;
-		border: 1px solid $borderColor;
-		border-radius: $buttonSize / 2;
-		color: $thumbColor;
-		cursor: pointer;
-		font-size: $buttonFontSize;
-		height: $buttonSize;
-		outline:none;
-		padding: 0;
-		position: absolute;
-		top: ($thumbSize - $buttonSize) / 2;
-		width: $buttonSize;
+  @mixin thumb {
+    background: $thumbColor;
+    border-radius: $thumbSize / 2;
+    cursor: pointer;
+    height: $thumbSize;
+    width: $thumbSize;
+    @include transition($transitionTime);
 
-		&:hover {
-			color: $thumbColorHover;
-		}
-	}
+    &:hover {
+      background: $thumbColorHover;
+    }
+  }
 
-	.jquery-range-span {
-		position: relative;
-		top: -1px;
-	}
+  input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @include thumb;
+  }
 
-	.jquery-range-plus {
-		right: 0;
-	}
+  input::-moz-range-thumb {
+    -moz-appearance:none;
+    border: none;
+    @include thumb;
+  }
+  
+  .jquery-range-plus, .jquery-range-minus {
+    background: none;
+    border: 1px solid $borderColor;
+    border-radius: $buttonSize / 2;
+    color: $thumbColor;
+    cursor: pointer;
+    font-size: $buttonFontSize;
+    height: $buttonSize;
+    outline:none;
+    padding: 0;
+    position: absolute;
+    top: ($thumbSize - $buttonSize) / 2;
+    width: $buttonSize;
+
+    &:hover {
+      color: $thumbColorHover;
+    }
+  }
+
+  .jquery-range-span {
+    position: relative;
+    top: -1px;
+  }
+
+  .jquery-range-plus {
+    right: 0;
+  }
 }

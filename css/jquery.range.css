@@ -6,15 +6,20 @@
   width: 195px; }
   .jquery-range input {
     background: none;
-    border-top: 1px solid #dddddd;
+    border-top: 1px solid #ddd;
+    -webkit-box-sizing: content-box;
+    -moz-box-sizing: content-box;
+    box-sizing: content-box;
+    height: 1px;
     margin: 12px 20px 0;
-    position: relative;
     width: calc(100% - 40px);
     -webkit-appearance: none; }
   .jquery-range input:focus, .jquery-range input:active {
     outline: none; }
+  .jquery-range input[type=range]::-moz-focus-outer {
+    border: none; }
   .jquery-range input::-moz-range-track {
-    border: 0; }
+    height: 0; }
   .jquery-range .jquery-range-thumb {
     height: 25px;
     pointer-events: none;
@@ -24,12 +29,12 @@
   .jquery-range .jquery-range-flag {
     background: #35393b;
     border-radius: 3px;
-    color: white;
+    color: #fff;
     font-size: 12px;
+    left: 50%;
+    opacity: 0;
     padding: 6px 0;
     position: absolute;
-    width: 35px;
-    left: 50%;
     -webkit-transform: translate(-50%, -130%);
     -moz-transform: translate(-50%, -130%);
     -ms-transform: translate(-50%, -130%);
@@ -38,20 +43,20 @@
     -moz-transition: opacity 0.2s;
     -ms-transition: opacity 0.2s;
     transition: opacity 0.2s;
-    opacity: 0; }
+    width: 35px; }
   .jquery-range:hover .jquery-range-flag {
     opacity: 1; }
   .jquery-range .jquery-range-flag:after {
     border: 7px solid transparent;
     border-top-color: #35393b;
-    height: 0px;
+    bottom: -12px;
     content: '';
+    height: 0px;
     left: calc(50% - 7px);
     position: absolute;
-    bottom: -12px;
     width: 0px; }
   .jquery-range .jquery-range-label {
-    color: white;
+    color: #fff;
     font-size: 10px;
     height: 100%;
     line-height: 25px;
@@ -67,7 +72,6 @@
     border-radius: 12.5px;
     cursor: pointer;
     height: 25px;
-    margin-top: -13px;
     width: 25px;
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
@@ -77,11 +81,11 @@
       background: #1b93bd; }
   .jquery-range input::-moz-range-thumb {
     -moz-appearance: none;
+    border: none;
     background: #2dacd7;
     border-radius: 12.5px;
     cursor: pointer;
     height: 25px;
-    margin-top: -13px;
     width: 25px;
     -webkit-transition: 0.2s;
     -moz-transition: 0.2s;
@@ -91,7 +95,7 @@
       background: #1b93bd; }
   .jquery-range .jquery-range-plus, .jquery-range .jquery-range-minus {
     background: none;
-    border: 1px solid #dddddd;
+    border: 1px solid #ddd;
     border-radius: 7.5px;
     color: #2dacd7;
     cursor: pointer;
@@ -109,3 +113,5 @@
     top: -1px; }
   .jquery-range .jquery-range-plus {
     right: 0; }
+
+/*# sourceMappingURL=jquery.range.css.map */
