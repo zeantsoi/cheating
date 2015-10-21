@@ -20,9 +20,15 @@
     border: none; }
   .jquery-range input::-moz-range-track {
     height: 0; }
-  .jquery-range .jquery-range-thumb {
-    height: 25px;
+  .jquery-range .jquery-range-track {
+    height: 100%;
+    left: 20px;
     pointer-events: none;
+    position: absolute;
+    right: 45px;
+    top: 0; }
+  .jquery-range .jquery-range-thumb {
+    height: 100%;
     position: absolute;
     top: 0;
     width: 25px; }

@@ -51,10 +51,9 @@
   position: relative;
   text-align: center;
   width: $width;
+  $margin: ($buttonSize + $buttonMargin);
 
   input {
-    $margin: ($buttonSize + $buttonMargin);
-    
     background: none;
     border-top: 1px solid $borderColor;
     @include boxSizing(content-box);
@@ -76,9 +75,17 @@
     height: 0;
   }
 
-  .jquery-range-thumb {
-    height: $thumbSize;
+  .jquery-range-track {
+    height: 100%;
+    left: $margin;
     pointer-events: none;
+    position: absolute;
+    right: $margin + $thumbSize;
+    top: 0;
+  }
+
+  .jquery-range-thumb {
+    height: 100%;
     position: absolute;
     top: 0;
     width: $thumbSize;

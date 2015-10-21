@@ -34,8 +34,9 @@
     $element.prepend($minus);
     $minus.click(this._onClick.bind(this, -this.options.step));
 
-    this.$thumb = $('<div class="jquery-range-thumb"><div class="jquery-range-flag"></div><div class="jquery-range-label"></div></div>');
-    $element.append(this.$thumb);
+    var $track = $('<div class="jquery-range-track"><div class="jquery-range-thumb"><div class="jquery-range-flag"></div><div class="jquery-range-label"></div></div></div>');
+    this.$thumb = $track.find('.jquery-range-thumb');
+    $element.append($track);
     this.$label = this.$thumb.find('.jquery-range-label');
     this.$flag = this.$thumb.find('.jquery-range-flag');
 
@@ -60,10 +61,11 @@
 		this.$input.attr('value', this.options.value);
 		this.input.value = this.options.value;
 		var perc = (this.options.value - this.options.min) / (this.options.max - this.options.min);
-		var width = this.$input.width() - this.$thumb.width();
-		var left = parseFloat(this.$input.css('margin-left'));;
-		var pos = left + width * perc;
-		this.$thumb.css('left', pos + 'px');
+		// var width = this.$input.width() - this.$thumb.width();
+		// var left = parseFloat(this.$input.css('margin-left'));;
+		// var pos = left + width * perc;
+        // this.$thumb.css('left', pos + 'px');
+		this.$thumb.css('left', perc * 100 + '%');
 		this.$flag.text(this.options.value);
 		this.$label.text(this.options.value);
 		if(this.options.onChange)
