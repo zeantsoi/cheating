@@ -50,7 +50,7 @@
     -ms-transition: opacity 0.2s;
     transition: opacity 0.2s;
     width: 35px; }
-  .jquery-range:hover .jquery-range-flag {
+  .jquery-range .jquery-range-thumb.hover .jquery-range-flag {
     opacity: 1; }
   .jquery-range .jquery-range-flag:after {
     border: 7px solid transparent;
@@ -70,7 +70,7 @@
     -moz-transition: opacity 0.2s;
     -ms-transition: opacity 0.2s;
     transition: opacity 0.2s; }
-  .jquery-range:hover .jquery-range-label {
+  .jquery-range .jquery-range-thumb.hover .jquery-range-label {
     opacity: 0; }
   .jquery-range input::-webkit-slider-thumb {
     -webkit-appearance: none;

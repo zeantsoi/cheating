@@ -25,6 +25,11 @@
     this.$input.attr('min', this.options.min);
     this.$input.attr('max', this.options.max);
     this.$input.attr('step', this.options.step);
+    
+    this._onMouseDown = this._onMouseDown.bind(this);
+    this._onMouseUp = this._onMouseUp.bind(this);
+    this.$input.mousedown(this._onMouseDown);
+    this.$input.mouseup(this._onMouseUp);
 
     var $plus = $('<button class="jquery-range-plus"><span class="jquery-range-span">+</span></button>')
     $element.prepend($plus);
@@ -57,14 +62,18 @@
     this._update();
   }
 
+  Range.prototype._onMouseDown = function() {
+    this.$thumb.addClass('hover');
+  }
+
+  Range.prototype._onMouseUp = function() {
+    this.$thumb.removeClass('hover');
+  }
+
   Range.prototype._update = function() {
     this.$input.attr('value', this.options.value);
     this.input.value = this.options.value;
     var perc = (this.options.value - this.options.min) / (this.options.max - this.options.min);
-    // var width = this.$input.width() - this.$thumb.width();
-    // var left = parseFloat(this.$input.css('margin-left'));;
-    // var pos = left + width * perc;
-        // this.$thumb.css('left', pos + 'px');
     this.$thumb.css('left', perc * 100 + '%');
     this.$flag.text(this.options.value);
     this.$label.text(this.options.value);
