@@ -1,0 +1,111 @@
+.jquery-range {
+  font-family: Helvetica, Arial, sans-serif;
+  height: 25px;
+  position: relative;
+  text-align: center;
+  width: 195px; }
+  .jquery-range input {
+    background: none;
+    border-top: 1px solid #dddddd;
+    margin: 12px 20px 0;
+    position: relative;
+    width: calc(100% - 40px);
+    -webkit-appearance: none; }
+  .jquery-range input:focus, .jquery-range input:active {
+    outline: none; }
+  .jquery-range input::-moz-range-track {
+    border: 0; }
+  .jquery-range .jquery-range-thumb {
+    height: 25px;
+    pointer-events: none;
+    position: absolute;
+    top: 0;
+    width: 25px; }
+  .jquery-range .jquery-range-flag {
+    background: #35393b;
+    border-radius: 3px;
+    color: white;
+    font-size: 12px;
+    padding: 6px 0;
+    position: absolute;
+    width: 35px;
+    left: 50%;
+    -webkit-transform: translate(-50%, -130%);
+    -moz-transform: translate(-50%, -130%);
+    -ms-transform: translate(-50%, -130%);
+    transform: translate(-50%, -130%);
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    transition: opacity 0.2s;
+    opacity: 0; }
+  .jquery-range:hover .jquery-range-flag {
+    opacity: 1; }
+  .jquery-range .jquery-range-flag:after {
+    border: 7px solid transparent;
+    border-top-color: #35393b;
+    height: 0px;
+    content: '';
+    left: calc(50% - 7px);
+    position: absolute;
+    bottom: -12px;
+    width: 0px; }
+  .jquery-range .jquery-range-label {
+    color: white;
+    font-size: 10px;
+    height: 100%;
+    line-height: 25px;
+    -webkit-transition: opacity 0.2s;
+    -moz-transition: opacity 0.2s;
+    -ms-transition: opacity 0.2s;
+    transition: opacity 0.2s; }
+  .jquery-range:hover .jquery-range-label {
+    opacity: 0; }
+  .jquery-range input::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background: #2dacd7;
+    border-radius: 12.5px;
+    cursor: pointer;
+    height: 25px;
+    margin-top: -13px;
+    width: 25px;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    transition: 0.2s; }
+    .jquery-range input::-webkit-slider-thumb:hover {
+      background: #1b93bd; }
+  .jquery-range input::-moz-range-thumb {
+    -moz-appearance: none;
+    background: #2dacd7;
+    border-radius: 12.5px;
+    cursor: pointer;
+    height: 25px;
+    margin-top: -13px;
+    width: 25px;
+    -webkit-transition: 0.2s;
+    -moz-transition: 0.2s;
+    -ms-transition: 0.2s;
+    transition: 0.2s; }
+    .jquery-range input::-moz-range-thumb:hover {
+      background: #1b93bd; }
+  .jquery-range .jquery-range-plus, .jquery-range .jquery-range-minus {
+    background: none;
+    border: 1px solid #dddddd;
+    border-radius: 7.5px;
+    color: #2dacd7;
+    cursor: pointer;
+    font-size: 10px;
+    height: 15px;
+    outline: none;
+    padding: 0;
+    position: absolute;
+    top: 5px;
+    width: 15px; }
+    .jquery-range .jquery-range-plus:hover, .jquery-range .jquery-range-minus:hover {
+      color: #1b93bd; }
+  .jquery-range .jquery-range-span {
+    position: relative;
+    top: -1px; }
+  .jquery-range .jquery-range-plus {
+    right: 0; }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" href="css/styles.css" type="text/css">
+		<link rel="stylesheet" href="css/jquery.range.css" type="text/css">
+	</head>
+	<body>
+		<form>
+			<input type="text" id="range-value" disabled>
+			<div class="jquery-range">
+				<input type="range" min="5" max="105" value="35">
+			</div>
+		</form>
+		<script src='js/jquery-2.1.4.min.js'></script> 
+		<script src='js/jquery.range.js'></script>
+		<script>
+			(function()
+			{
+				"use strict";
+
+				var updateText = function(rangeValue) {
+					$('#range-value').val(rangeValue);
+				}
+				$(".jquery-range").range({step: 10, onChange: updateText});
+
+			})();
+		</script>
+	</body>
+</html>
