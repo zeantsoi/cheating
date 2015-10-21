@@ -1,7 +1,7 @@
 (function()
 {
-	"use strict";
+  'use strict';
 
-	$(".jquery-range").range({});
+  $('.jquery-range').range({});
 
 })();
