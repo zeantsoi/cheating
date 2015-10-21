@@ -22,10 +22,6 @@
       value: options.value || parseFloat(this.$input.attr('value')) || _DEFAULTS.value
     };
 
-    this.$input.attr('min', this.options.min);
-    this.$input.attr('max', this.options.max);
-    this.$input.attr('step', this.options.step);
-    
     this._onMouseDown = this._onMouseDown.bind(this);
     this._onMouseUp = this._onMouseUp.bind(this);
     this.$input.mousedown(this._onMouseDown);
@@ -33,11 +29,11 @@
 
     var $plus = $('<button class="jquery-range-plus"><span class="jquery-range-span">+</span></button>')
     $element.prepend($plus);
-    $plus.click(this._onClick.bind(this, this.options.step));
+    $plus.click(this._onClick.bind(this, 1));
     
     var $minus = $('<button class="jquery-range-minus"><span class="jquery-range-span">-</span></button>')
     $element.prepend($minus);
-    $minus.click(this._onClick.bind(this, -this.options.step));
+    $minus.click(this._onClick.bind(this, -1));
 
     var $track = $('<div class="jquery-range-track"><div class="jquery-range-thumb"><div class="jquery-range-flag"></div><div class="jquery-range-label"></div></div></div>');
     this.$thumb = $track.find('.jquery-range-thumb');
@@ -47,7 +43,11 @@
 
     this._onInput = this._onInput.bind(this);
     this.input.addEventListener('input', this._onInput);
-    this._update();
+    
+    this.setMin(this.options.min);
+    this.setMax(this.options.max);
+    this.setStep(this.options.step);
+    this.setValue(this.options.value);
   }
 
   Range.prototype._onInput = function(evt) {
@@ -57,7 +57,7 @@
 
   Range.prototype._onClick = function(amount, evt) {
     evt.preventDefault();
-    this.options.value += amount;
+    this.options.value += amount * this.options.step;
     this.options.value = Math.max(this.options.min, Math.min(this.options.max, this.options.value));
     this._update();
   }
@@ -79,6 +79,29 @@
     this.$label.text(this.options.value);
     if(this.options.onChange)
       this.options.onChange(this.options.value);
+  }
+
+  Range.prototype.setMax = function(num) {
+    this.options.max = num;
+    this.$input.attr('max', num);
+    this.setValue(this.options.value);
+  }
+
+  Range.prototype.setMin = function(num) {
+    this.options.min = num;
+    this.$input.attr('min', num);
+    this.setValue(this.options.value);
+  }
+
+  Range.prototype.setValue = function(num) {
+    this.options.value = Math.max(this.options.min, Math.min(this.options.max, this.options.value));
+    this._update();
+  }
+
+  Range.prototype.setStep = function(num) {
+    this.options.step = num;
+    this.$input.attr('step', this.options.step);
+    this.setValue(Math.round(this.options.value / num) * num);
   }
 
   $.fn.range = function(options) {
